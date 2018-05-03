@@ -10,7 +10,11 @@ const getDefaultData = (mold) => {
                 x: 10,
                 y: 10,
                 width: 80,
-                height: 60
+                height: 60,
+                style: {
+                    strokeWidth: 1,
+                    stroke: 'red'
+                }
             };
         
         case 'CIRCLE':
@@ -21,7 +25,8 @@ const getDefaultData = (mold) => {
                 r: 30,
                 style: {
                     stroke: '#000',
-                    fill:"red"
+                    fill:"red",
+                    strokeWidth: 1,
                 }
             };
         default:
