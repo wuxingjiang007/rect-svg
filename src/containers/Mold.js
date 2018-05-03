@@ -13,10 +13,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispach, ownProps) => ({
     onClick: () => {
-        console.log(ownProps)
-        if(ownProps.active) {
-            return false;
-        }
         dispach(createEdit(ownProps))
     }
 })

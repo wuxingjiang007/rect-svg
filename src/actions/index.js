@@ -30,3 +30,19 @@ export const createEdit = source => (
         id: 'Edit'
     }, source)
 )
+
+// 修改编辑器
+export const remEdit = (data) => (
+    {
+        type: 'REM_EDIT',
+        data
+    }
+)
+
+// 移动编辑框
+
+export const removeEdit = (data) => (
+    Object.assign({}, {
+        type: 'REMOVE_EDIT',
+    }, data)
+)
