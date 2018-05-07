@@ -19,8 +19,6 @@ const getSvgCanvasSys = (e, old) => {
     }
 }
 
-
-
 const mapStateToProps = (state, ownProps) => (
     {
         
