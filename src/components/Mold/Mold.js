@@ -5,16 +5,16 @@ import './Mold.css';
 
 class Mold extends Component {
     render() {
-        const data = this.props.data;
+        const data = this.props;
         // let getClassName = data => {
         //     let type = data.type;
         //     let mold = data.mold;
         //     console.log(data)
         //     switch (type) {
         //         case 'EDIT':
-                    
+
         //             return 'edit' + mold;
-            
+
         //         default:
         //             return '';
         //     }
@@ -22,16 +22,16 @@ class Mold extends Component {
         let node = () => {
             switch (data.mold) {
                 case 'RECT':
-                    
+
                     return (
-                        <rect 
+                        <rect
                         {...data}
                         onClick={this.props.onClick}
                         ></rect>
                     );
                 case 'CIRCLE':
                     return (
-                        <circle 
+                        <circle
                         {...data}
                         onClick={this.props.onClick}
                         ></circle>
@@ -42,8 +42,8 @@ class Mold extends Component {
         }
 
         return <g>{node()}</g>;
-        
-      
+
+
     }
 }
 
@@ -52,6 +52,6 @@ class Mold extends Component {
 //     data: PropTypes.object.isRequired,
 //     onClick: PropTypes.func.isRequired
 // }
-  
+
 
 export default Mold;

@@ -1,19 +1,21 @@
 import { connect } from 'react-redux'
-import {createEdit} from '../actions'
+import {createEdit, setFocus, clearFocus} from '../actions'
 import Mold from '../components/Mold/Mold'
 
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state, ownProps)
     return {
-        active: state.edit.id === ownProps.data.id
+        // active: state.edit.id === ownProps.data.id,
+        // data: state.datas,
     }
 }
 
 const mapDispatchToProps = (dispach, ownProps) => ({
     onClick: () => {
         dispach(createEdit(ownProps))
+        dispach(clearFocus())
+        dispach(setFocus(ownProps))
     }
 })
 

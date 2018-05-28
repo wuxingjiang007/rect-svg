@@ -5,12 +5,11 @@ import EditMold from '../components/Mold/Mold'
 
 
 const mapStateToProps = (state, ownProps) => ({
-    data: state.edit,
-    className: ownProps.className
+    ...state.edit,
 })
 
 const mapDispatchToProps = (dispach, ownProps) => ({
-   
+
 })
 
 export default connect(

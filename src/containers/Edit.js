@@ -1,27 +1,28 @@
 import { connect } from 'react-redux';
 import Edit from '../components/Edit/Edit';
-import {remEdit, removeEdit} from '../actions';
+import {resetEdit, resetData,translateData} from '../actions';
 
 // 是否可拖拽标识
 let isDrag = false;
 
-let old = {};
+let startPoints = {};
 
-const getSvgCanvasSys = (e, old) => {
-    let target = e.target;
-    let targetX = parseInt(target.getAttribute('x'));
-    let targetY = parseInt(target.getAttribute('y'));
-
-    console.log(old.rectX)
+const getSvgCanvasSys = (e) => {
+    let target = startPoints.target;
+    let box = target.getBBox();
+    let targetX = box.x;
+    let targetY = box.y;
+    let touchX = e.clientX;
+    let touchY = e.clientY;
     return {
-        x: old.rectX +  e.clientX - old.mouseX,
-        y: old.rectY +  e.clientY - old.mouseY
+        x: startPoints.boxX +  e.clientX - startPoints.mouseX,
+        y: startPoints.boxY +  e.clientY - startPoints.mouseY
     }
 }
 
 const mapStateToProps = (state, ownProps) => (
     {
-        
+
     }
 )
 
@@ -29,36 +30,44 @@ const mapDispatchToProps = (dispatch, ownProps) => (
     {
         onClick: (event) => {
             let e = event || window.event;
+            // getSvgCanvasSys(e);
+            // setTimeout(()=> {
+            //   dispatch(remEdit({x:100,y:200}))
+            // }, 1000)
             // console.log(getSvgCanvasSys(e))
         },
         onMouseDown: (event) => {
-            // console.log(e.target);
             let e = event || window.event;
             let target = e.target;
+            if(!isDrag) {
+              let box = target.getBBox();
+              startPoints = {
+                  boxX: box.x,
+                  boxY: box.y,
+                  mouseX: parseInt(e.clientX),
+                  mouseY: parseInt(e.clientY),
+                  target: target
+              }
+            }
             // 存储当前鼠标已经元素位置信息， 打开可移动标识。
             isDrag = true;
-            old = {
-                rectX: parseInt(target.getAttribute('x')),
-                rectY: parseInt(target.getAttribute('y')),
-                mouseX: parseInt(e.clientX),
-                mouseY: parseInt(e.clientY)
-            }
 
-           
         },
         onMouseMove: (event) => {
-            
+
             let e = event || window.event;
             if(!isDrag) {
                 return false;
             }
-            dispatch(removeEdit(getSvgCanvasSys(e, old)))
-            console.log(getSvgCanvasSys(e, old));
+            const mp = getSvgCanvasSys(e)
+            dispatch(resetEdit(mp))
+            dispatch(translateData({...ownProps, mx:e.clientX - startPoints.mouseX, my: e.clientY - startPoints.mouseY}))
         },
         onMouseUp: (event) => {
             let e = event || window.event;
+            dispatch(resetData({...ownProps, mx:e.clientX - startPoints.mouseX, my: e.clientY - startPoints.mouseY}))
             isDrag = false;
-            dispatch(remEdit(getSvgCanvasSys(e, old)))
+
         }
     }
 )

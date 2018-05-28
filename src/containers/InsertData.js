@@ -4,7 +4,7 @@ import Btn from '../components/Menu/Btn';
 
 const getDefaultData = (mold) => {
     switch (mold) {
-        case 'RECT': 
+        case 'RECT':
             return {
                 mold,
                 x: 10,
@@ -16,13 +16,14 @@ const getDefaultData = (mold) => {
                     stroke: 'red'
                 }
             };
-        
+
         case 'CIRCLE':
             return {
                 mold,
                 cx: 100,
                 cy: 100,
                 r: 30,
+                transform: 'translate(0,0)',
                 style: {
                     stroke: '#000',
                     fill:"red",

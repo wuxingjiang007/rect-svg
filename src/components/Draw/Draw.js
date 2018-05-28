@@ -10,11 +10,11 @@ class Draw extends Component {
         <div className="Draw" id="Drawing">
             <svg xmlnx="http://www.w3.org/2000/svg" width="300" height="400">
                 {data.map((item) => (
-                <Mold 
-                key={item.id}
-                data={item}>
+                <Mold
+                {...item}
+                key={item.id}>
                 </Mold>))}
-                <Edit/>
+                <Edit focus={this.props.focus}></Edit>
             </svg>
         </div>
       );
@@ -23,6 +23,5 @@ class Draw extends Component {
         console.log(this);
     }
   }
-  
+
 export default Draw;
-  

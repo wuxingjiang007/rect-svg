@@ -1,7 +1,6 @@
 
 
 const getEdit = (source) => {
-    console.log(source);
     let editData = {
         id: 'edit' + source.id,
         className: 'editRect',
@@ -24,14 +23,14 @@ const getEdit = (source) => {
     let strokeWidth = source.style.strokeWidth || 0;
 
     switch (source.mold) {
-        
-        case 'RECT':
 
+        case 'RECT':
             return (Object.assign(editData, {
                 x: source.x - strokeWidth * 2,
                 y: source.y - strokeWidth * 2,
                 width: source.width + strokeWidth * 4,
                 height: source.height + strokeWidth * 4,
+                source: source
             }))
         case 'CIRCLE':
             return (Object.assign(editData, {
@@ -39,27 +38,20 @@ const getEdit = (source) => {
                 y: source.cy - source.r -  strokeWidth * 2,
                 width: 2 * source.r + strokeWidth * 4,
                 height: 2 * source.r + strokeWidth * 4,
+                source: source
             }))
         default:
             return '';
     }
-    
+
 }
 
 const edit = (state = {}, action) => {
     switch (action.type) {
         case 'CREATE_EDIT':
-            return getEdit(action.data);
-        case 'REM_EDIT':
-            return Object.assign({}, state, action.data);
-        case 'REMOVE_EDIT':
-            // let style = {...state.style};
-            // console.log(style)
-            // style = Object.assign({}, style, {transform: `translate(${action.x}, ${action.y})` });
-            // let obj = {
-            //     style
-            // }
-            return Object.assign({}, state,  {transform: `translate(${action.x}, ${action.y})` })
+            return getEdit(action);
+        case 'RESET_EDIT':
+            return Object.assign({}, state,  action)
         default:
             return state;
     }
