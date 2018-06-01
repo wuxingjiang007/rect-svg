@@ -8,12 +8,6 @@ let isDrag = false;
 let startPoints = {};
 
 const getSvgCanvasSys = (e) => {
-    let target = startPoints.target;
-    let box = target.getBBox();
-    let targetX = box.x;
-    let targetY = box.y;
-    let touchX = e.clientX;
-    let touchY = e.clientY;
     return {
         x: startPoints.boxX +  e.clientX - startPoints.mouseX,
         y: startPoints.boxY +  e.clientY - startPoints.mouseY
@@ -29,7 +23,7 @@ const mapStateToProps = (state, ownProps) => (
 const mapDispatchToProps = (dispatch, ownProps) => (
     {
         onClick: (event) => {
-            let e = event || window.event;
+            // let e = event || window.event;
             // getSvgCanvasSys(e);
             // setTimeout(()=> {
             //   dispatch(remEdit({x:100,y:200}))
@@ -44,8 +38,8 @@ const mapDispatchToProps = (dispatch, ownProps) => (
               startPoints = {
                   boxX: box.x,
                   boxY: box.y,
-                  mouseX: parseInt(e.clientX),
-                  mouseY: parseInt(e.clientY),
+                  mouseX: parseInt(e.clientX, 10),
+                  mouseY: parseInt(e.clientY, 10),
                   target: target
               }
             }

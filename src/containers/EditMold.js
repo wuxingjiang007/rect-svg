@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import {createEdit} from '../actions'
 import EditMold from '../components/Mold/Mold'
 
 

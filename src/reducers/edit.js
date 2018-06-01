@@ -10,13 +10,12 @@ const getEdit = (source) => {
         width: 0,
         height: 0,
         style: {
-            'fillOpacity': '0.5',
             'stroke': 'rgb(79, 128, 255)',
             'fill': '#000',
-            fillOpacity: 0,
+            'fillOpacity': 0,
             'strokeWidth': 2,
             'strokeDasharray': '3 2',
-            translate: 'none'
+            'translate': 'none'
         }
     }
 
